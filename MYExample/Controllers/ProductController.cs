@@ -92,6 +92,20 @@ namespace MYExample.Controllers
            // var ahmed = new {ahmed= "ahmed", ali=575,ayman= "midoo" };
         }
 
-     
+        public IActionResult CreateAnonArray()
+        {
+            var OddsAndEnds = new[]
+            {
+                new {Name="apple",Ctegory="company"},
+                  new {Name="samsung",Ctegory="company"},
+                    new {Name="red",Ctegory="color"},
+                      new {Name="hondai",Ctegory="company Cars"},
+
+            };
+            StringBuilder stringBuildeRresult = new StringBuilder();
+            foreach (var item in OddsAndEnds)
+                stringBuildeRresult.Append(item.Name).Append("").Append("-");
+            return View("result",stringBuildeRresult.ToString());
+        }
     }
 }
