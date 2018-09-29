@@ -130,5 +130,46 @@ namespace MYExample.Controllers
             }
             return View("result", stringBuilder.ToString());
         }
+
+        public IActionResult FindProductByLINQ_Notation()
+        {
+            Product[] products =
+             {
+                new Product{Name="apple",Category="mobile phone",Price=202 },
+                new Product{Name="nokia",Category="mobile phone",Price=328 },
+                new Product{Name="samsung",Category="mobile phone",Price=697 },
+                new Product{Name="blackbery",Category="mobile phone",Price=28 },
+                new Product{Name="red",Category="colour",Price=128 }
+            };
+
+            // this .notion type in LINQ
+            //this OrderByDescending  in   Deferred functions (Yes) in LINQ stystem
+
+            var findCategory = products.OrderByDescending(p => p.Price)
+                                           .Take(3)
+                                           .Select(p => new { p.Name, p.Price, p.Category });
+                                var sum1 =products.Sum(p => p.Price);
+            //     .Where(p => p.Category == "mobile");
+
+
+            products[2] = new Product
+            {
+                Name = "ahmed", Price = 55800
+            };
+
+            //this sum  in   Deferred functions (No) in LINQ stystem
+            var sum2 = products.Sum(p => p.Price);
+
+            // int count = 0;
+            StringBuilder stringBuilder = new StringBuilder();
+            foreach (var item in findCategory)
+            {
+                stringBuilder.AppendFormat("Price:{0}", item.Price);
+                //if (++count == 3)
+                //    break;
+               
+            }
+            return View("result", string.Format("All result:{0},Sum1:{1},Sum2:{2}", stringBuilder.ToString(),sum1,sum2));
+        }
     }
 }
