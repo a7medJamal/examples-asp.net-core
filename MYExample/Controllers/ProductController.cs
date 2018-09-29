@@ -50,7 +50,29 @@ namespace MYExample.Controllers
             decimal total = cart.PriceTotal();
             return View("result", total.ToString());
         }
-    
+        public IActionResult ExtentionMethodIE()
+        {
+            IEnumerable<Product> products = new ShoppingCart
+            {
+                products = new List<Product>
+                {
+                    new Product {Price=2},
+                    new Product {Price=23},
+                    new Product{Price=12}
+                }
+            };
+            Product[] productsArray =
+             {
+                    new Product {Price=2},
+                    new Product {Price=23},
+                    new Product{Price=12}
+            };
+            decimal totalPrice = products.PricetotalIE();
+            decimal totalPriceArray = productsArray.PricetotalIE();
+
+            return View("result",string.Format("Total Price IE{0:c},Total Price Array {1:c}",totalPrice,totalPriceArray).ToString());
+        }
+
       
      
     }

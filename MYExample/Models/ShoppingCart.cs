@@ -6,9 +6,18 @@ using System.Threading.Tasks;
 
 namespace MYExample.Models
 {
-    public class ShoppingCart 
+    public class ShoppingCart : IEnumerable<Product>
     {
        public List<Product> products { set; get; }
 
+        public IEnumerator<Product> GetEnumerator()
+        {
+            return products.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
     }
 }

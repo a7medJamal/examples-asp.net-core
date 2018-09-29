@@ -15,7 +15,13 @@ namespace MYExample.Models
             return total;
 
         }
-     
+        public static decimal PricetotalIE(this IEnumerable<Product> productsIE)
+        {
+            decimal total = 0;
+            foreach (Product pro in productsIE)
+                total += pro.Price;
+            return total;
+        }
    
     }
 }
