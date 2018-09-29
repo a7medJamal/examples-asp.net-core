@@ -73,7 +73,25 @@ namespace MYExample.Controllers
             return View("result",string.Format("Total Price IE{0:c},Total Price Array {1:c}",totalPrice,totalPriceArray).ToString());
         }
 
-      
+        public IActionResult FilterByCategory()
+        {
+            IEnumerable<Product> products = new ShoppingCart
+            {
+                products = new List<Product>
+                {
+                    new Product {Price=2,Category="apple"},
+                    new Product {Price=23,Category="apple"},
+                    new Product{Price=12,Category="samsung"}
+                }
+            };
+            decimal total = 0;
+            foreach (Product pro in products.FilterByCategory("apple"))
+                 total += pro.Price;
+            return View("result", string.Format("Total Price IE{0:c}", total ).ToString());
+
+           // var ahmed = new {ahmed= "ahmed", ali=575,ayman= "midoo" };
+        }
+
      
     }
 }

@@ -22,6 +22,11 @@ namespace MYExample.Models
                 total += pro.Price;
             return total;
         }
-   
+     public static IEnumerable<Product > FilterByCategory(this IEnumerable<Product> productEnum , string categoryparam)
+        {
+            foreach (Product pro in productEnum)
+                if (pro.Category == categoryparam)
+                   yield return pro;
+        }
     }
 }
