@@ -107,5 +107,28 @@ namespace MYExample.Controllers
                 stringBuildeRresult.Append(item.Name).Append("").Append("-");
             return View("result",stringBuildeRresult.ToString());
         }
+        public IActionResult FindProductByLINQ()
+        {
+            Product [] products=
+             {
+                new Product{Name="apple",Category="mobile phone",Price=202 },
+                new Product{Name="nokia",Category="mobile phone",Price=328 },
+                new Product{Name="samsung",Category="mobile phone",Price=697 },
+                new Product{Name="blackbery",Category="mobile phone",Price=28 },
+                new Product{Name="red",Category="colour",Price=128 }
+            };
+            var findCategory = from math in products
+                               orderby math.Price ascending
+                               select new { math.Name, math.Price, math.Category };
+            int count = 0;
+            StringBuilder stringBuilder = new StringBuilder();
+            foreach(var item in findCategory)
+            {
+                stringBuilder.AppendFormat("Price:{0}", item.Price);
+                if (++count == 3)
+                    break;
+            }
+            return View("result", stringBuilder.ToString());
+        }
     }
 }
