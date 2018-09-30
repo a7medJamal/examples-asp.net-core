@@ -1,0 +1,31 @@
+﻿@model MYExample.Models.Product
+@{
+    ViewData["Title"] = "Index";
+}
+<h2>Index</h2>
+
+<table border="1" style="border:dashed">
+    <thead> <tr><th>property</th> <th> value</th></tr></thead>
+    <tbody>
+        <tr>
+            <td>
+                Name
+            </td>
+            <td>
+                @Model.Name
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Price
+            </td>
+            <td>
+                @Model.Price
+            </td>
+        </tr>
+    </tbody>
+</table>
+<input type="password" />
+@*
+HERE COMMENT AREA
+*@

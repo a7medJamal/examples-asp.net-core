@@ -1,0 +1,43 @@
+﻿@using MYExample.Models
+
+@model Product[]
+
+@{
+    ViewData["Title"] = "DemoArray";
+}
+
+<h2>DemoArray</h2>
+
+@if (Model.Length > 0)
+
+{
+    <table border="1" style="margin:20px ;border:double; padding:30px; border-spacing:25px">
+        <thead>
+            <tr>
+                <th>Product ID</th>
+                <th>Product Name</th>
+                <th>Product Description</th>
+                <th>Product Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Product pro in Model)
+            {
+                <tr>
+                    <td> @pro.Id</td>
+                    <td>@pro.Name</td>
+                    <td>@pro.Desciption</td>
+                    <td>@pro.Price</td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+
+}
+
+else
+{
+    <h2> not found any data</h2>
+
+}
